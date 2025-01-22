@@ -1,0 +1,37 @@
+repos:
+  # General pre-commit hooks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0  # Use the latest stable version
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+
+  # Black for code formatting
+  - repo: https://github.com/psf/black
+    rev: 23.9.1  # Use the latest version of Black
+    hooks:
+      - id: black
+        language_version: python3.12
+
+  # isort for import sorting
+  - repo: https://github.com/pre-commit/mirrors-isort
+    rev: v5.10.1  # Use the latest version of isort
+    hooks:
+      - id: isort
+
+  # Flake8 for linting
+  - repo: https://github.com/pycqa/flake8
+    rev: 6.1.0  # Use the latest version of flake8
+    hooks:
+      - id: flake8
+
+  # Django-specific pre-commit hooks (e.g., migration checks)
+  - repo: https://github.com/ecugol/pre-commit-hooks-django
+    rev: v0.4.0  # Use the latest release version
+    hooks:
+      - id: check-untracked-migrations
+      - id: check-unapplied-migrations
+      - id: check-absent-migrations
+
+exclude: .*migrations\/.*   # Exclude migration files from checks if necessary.
