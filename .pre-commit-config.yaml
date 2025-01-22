@@ -1,37 +1,42 @@
 repos:
   # General pre-commit hooks
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v5.0.0  # Use the latest stable version
+    rev: v4.4.0
     hooks:
       - id: trailing-whitespace
       - id: end-of-file-fixer
       - id: check-yaml
 
-  # Black for code formatting
-  - repo: https://github.com/psf/black
-    rev: 23.9.1  # Use the latest version of Black
+  # Black for code formatting (using Poetry)
+  - repo: local
     hooks:
       - id: black
-        language_version: python3.12
+        name: black
+        entry: poetry run black
+        language: system
+        types: [python]
 
-  # isort for import sorting
-  - repo: https://github.com/pre-commit/mirrors-isort
-    rev: v5.10.1  # Use the latest version of isort
+  # isort for sorting imports (using Poetry)
+  - repo: local
     hooks:
       - id: isort
+        name: isort
+        entry: poetry run isort
+        language: system
+        types: [python]
 
-  # Flake8 for linting
-  - repo: https://github.com/pycqa/flake8
-    rev: 6.1.0  # Use the latest version of flake8
+  # Ruff for linting (using Poetry)
+  - repo: local
     hooks:
-      - id: flake8
+      - id: ruff
+        name: ruff
+        entry: poetry run ruff check --fix
+        language: system
+        types: [python]
 
-  # Django-specific pre-commit hooks (e.g., migration checks)
-  - repo: https://github.com/ecugol/pre-commit-hooks-django
-    rev: v0.4.0  # Use the latest release version
+  # Poetry-specific checks (optional)
+  - repo: https://github.com/python-poetry/poetry
+    rev: '1.8.3'  # Use the latest stable version of Poetry
     hooks:
-      - id: check-untracked-migrations
-      - id: check-unapplied-migrations
-      - id: check-absent-migrations
-
-exclude: .*migrations\/.*   # Exclude migration files from checks if necessary.
+      - id: poetry-check   # Ensures pyproject.toml is valid.
+      - id: poetry-lock    # Ensures the lock file is up-to-date.

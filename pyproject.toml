@@ -1,5 +1,46 @@
+[tool.poetry]
+name = "django-testapp"
+version = "0.1.0"
+description = ""
+authors = []
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+django = "5.1.5"
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.3.0"
+pre-commit = "^3.3.3"
+isort = "5.13.2"
+
 [tool.black]
 line-length = 120
 
 [tool.isort]
 profile = "black"
+
+[tool.ruff]
+ignore = []
+line-length = 150
+select = [
+    # pycodestyle
+    "E",
+    "W",
+    # Pyflakes
+    "F",
+    # pyupgrade
+    "UP",
+    # flake8-bugbear
+    "B",
+    # flake8-simplify
+    "SIM",
+    # isort
+    "I",
+    # pep8-naming
+    "N",
+    # flake8-django
+    "DJ",
+    # flake8-pytest-style
+    "PT",
+]
