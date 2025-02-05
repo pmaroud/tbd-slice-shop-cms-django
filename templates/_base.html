@@ -1,13 +1,64 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
-  <title>{% block title %}Bookstore{% endblock title %}</title>
+  <script src="https://unpkg.com/htmx.org@2.0.0"></script>
+  <title>{% block title %}Pizza browser{% endblock title %}</title>
+  <link rel="stylesheet" href="{% static 'css/sidenav.css' %}">
+  <script src="{% static 'js/connect-streams-min.js' %}"></script>
 </head>
-<body>
+<body onload="ccpInit()">
+  <span onclick="toggleNav()">open</span>
+  <p>Agent: {{ agentName }}</p>
+  <div id="ccpSidenav" class="sidenav">
+      <a href="javascript:void(0)" class="closebtn" onclick="toggleNav()">&times;</a>
+    </div>
   <div class="container">
     {% block content %}
     {% endblock content %}
   </div>
+
+  <script>
+    function toggleNav() {
+      if (document.getElementById("ccpSidenav").style.height === "0px") {
+        console.log("openning")
+        document.getElementById("ccpSidenav").style.height = "250px";
+      } else {
+        console.log("closing")
+        document.getElementById("ccpSidenav").style.height = "0px";
+      }
+    }
+
+    function ccpInit() {
+        connect.core.initCCP(ccpSidenav, {
+            // QA
+            ccpUrl: "https://bysliceqa.my.connect.aws/connect/ccp-v2",
+            loginUrl: "https://slice.onelogin.com/trust/saml2/http-post/sso/bf42af42-9c21-469c-9179-693adb45b722",
+            // Prod
+            // ccpUrl: "https://byslice.awsapps.com/connect/ccp-v2#",
+            // loginUrl: "https://slice.onelogin.com/trust/saml2/http-post/sso/548c4aa4-76a0-4cbd-a8de-785b5ae69980",
+            ccpLoadTimeout: 10000,
+            region: "us-east-1",
+            loginPopup: true,
+            loginPopupAutoClose: true,
+            loginOptions: {
+                autoClose: true, // optional, defaults to `false`
+                height: 600, // optional, defaults to 578
+                width: 400, // optional, defaults to 433
+                top: 0, // optional, defaults to 0
+                left: 0, // optional, defaults to 0
+            },
+            softphone: {
+                allowFramedSoftphone: true
+            },
+            pageOptions: {
+                enableAudioDeviceSettings: true,
+                enablePhoneTypeSettings: true
+            }
+        });
+    }
+
+  </script>
 </body>
 </html>

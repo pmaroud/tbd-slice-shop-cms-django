@@ -1,0 +1,17 @@
+{% extends "_base.html" %}
+{% block title %}Shop Browser{% endblock title %}
+
+{% block content %}
+
+<form
+        method="get"
+        hx-get="{% url 'shop_details' %}"
+        hx-trigger="input delay:500ms"
+        hx-target="#search-results"
+        hx-swap="innerHTML">
+    >
+    <input type="text" name="id" placeholder="Search..." value="{{ request.GET.q|default:'' }}">
+</form>
+
+<div id="search-results"></div>
+{% endblock content %}

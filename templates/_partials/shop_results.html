@@ -1,0 +1,15 @@
+{% if shop_id %}
+    {% if shop_found %}
+        <h2>{{ shop.name }}</h2>
+        <ul>
+            <li>#{{ shop.id }}</li>
+            <li>&#128205;: {{ shop.full_address }}</li>
+            <li>&#x1F4DE;: {{ shop.phone }}</li>
+            <li>Slice member since {{ shop.member_since }}</li>
+        </ul>
+    {% else %}
+        <p>No shop found with id {{ shop_id }}</p>
+    {% endif %}
+{% else %}
+    <p>Look for a shop</p>
+{% endif %}

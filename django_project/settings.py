@@ -25,7 +25,7 @@ SECRET_KEY = "django-insecure-bgf2)g)9@(!vrv@37$zixl$bjk88^mn&9wi#p-9-6_%f$99-lz
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["localhost", "call-center-new-team.ngrok.io"]
 
 
 # Application definition
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    # "django_extensions",
     # Local
     "pages.apps.PagesConfig",  # new
 ]
@@ -118,8 +119,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = "static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]  # new
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+X_FRAME_OPTIONS = "ALLOW-FROM *"
+# X_FRAME_OPTIONS = "SAMEORIGIN"

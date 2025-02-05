@@ -7,36 +7,36 @@ repos:
       - id: end-of-file-fixer
       - id: check-yaml
 
-  # Black for code formatting (using Poetry)
-  - repo: local
-    hooks:
-      - id: black
-        name: black
-        entry: poetry run black
-        language: system
-        types: [python]
-
-  # isort for sorting imports (using Poetry)
-  - repo: local
-    hooks:
-      - id: isort
-        name: isort
-        entry: poetry run isort
-        language: system
-        types: [python]
-
-  # Ruff for linting (using Poetry)
-  - repo: local
-    hooks:
-      - id: ruff
-        name: ruff
-        entry: poetry run ruff check --fix
-        language: system
-        types: [python]
-
-  # Poetry-specific checks (optional)
-  - repo: https://github.com/python-poetry/poetry
-    rev: '1.8.3'  # Use the latest stable version of Poetry
-    hooks:
-      - id: poetry-check   # Ensures pyproject.toml is valid.
-      - id: poetry-lock    # Ensures the lock file is up-to-date.
+#  # Black for code formatting (using Poetry)
+#  - repo: local
+#    hooks:
+#      - id: black
+#        name: black
+#        entry: poetry run black
+#        language: system
+#        types: [python]
+#
+#  # isort for sorting imports (using Poetry)
+#  - repo: local
+#    hooks:
+#      - id: isort
+#        name: isort
+#        entry: poetry run isort
+#        language: system
+#        types: [python]
+#
+#  # Ruff for linting (using Poetry)
+#  - repo: local
+#    hooks:
+#      - id: ruff
+#        name: ruff
+#        entry: poetry run ruff check --fix
+#        language: system
+#        types: [python]
+#
+#  # Poetry-specific checks (optional)
+#  - repo: https://github.com/python-poetry/poetry
+#    rev: '1.8.3'  # Use the latest stable version of Poetry
+#    hooks:
+#      - id: poetry-check   # Ensures pyproject.toml is valid.
+#      - id: poetry-lock    # Ensures the lock file is up-to-date.
